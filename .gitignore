@@ -8,7 +8,8 @@
 /httpRequests/
 
 pyvenv.cfg
-test2.py
+
+test*.py
 
 
 db.sqlite3
