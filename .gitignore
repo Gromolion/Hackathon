@@ -7,6 +7,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
-pyenv.cfg
-test.py
+pyvenv.cfg
 test2.py
+
+
+db.sqlite3
+__pycache__/
