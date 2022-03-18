@@ -1,1 +1,12 @@
-venv/pyenv.cfg
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../:\Users\nais5\Desktop\HackathonDdos\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+pyenv.cfg
+test.py
+test2.py
