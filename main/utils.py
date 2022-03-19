@@ -7,12 +7,10 @@ class BaseMixin:
         context = kwargs
         if not self.request.user.is_authenticated:
             context['is_auth'] = False
-            context['login'] = {'title': 'Log In', 'name': 'login'}
-            context['signin'] = {'title': 'Sign In', 'name': 'signin'}
+            return context
         else:
             context['is_auth'] = True
-            context['profile'] = {'title': 'Профиль', 'name': 'profile'}
-        return context
+            return context
 
     def is_auth(self):
         if not self.request.user.is_authenticated:

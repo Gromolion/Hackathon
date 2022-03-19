@@ -25,7 +25,7 @@ class Panel(models.Model):
 class Info(models.Model):
     name = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
-    panel = models.OneToOneField(Panel, on_delete=models.CASCADE)
+    panel = models.ForeignKey(Panel, on_delete=models.CASCADE)
 
 
 class UserPanel(models.Model):

@@ -20,3 +20,9 @@ header a {
 header a:hover {
     color: #dedddd;
 }
+.profile {
+    display: flex;
+}
+.profile p{
+    margin: 0 15px 0 0;
+}
