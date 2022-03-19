@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #467bd3;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #dedddd;
+}
