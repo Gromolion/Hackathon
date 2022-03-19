@@ -1,7 +1,11 @@
-from django.urls import reverse_lazy
+from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
+from django.db.utils import IntegrityError
 
-from .forms import RegisterUserForm
+from .forms import *
 from .utils import *
 
 
@@ -29,20 +33,44 @@ class Home(BaseMixin, ListView):
              WHERE auth_user.id=%(user.id)s''' % {'user.id': self.request.user.id})
 
 
-class RegisterUser(BaseMixin, CreateView):
-    form_class = RegisterUserForm
-    template_name = 'main/signin.html'
-    success_url = reverse_lazy('login')
+def register(request):
+    data = {
+        'title': 'Регистрация',
+        'profile': {'title': 'Профиль'},
+        'login': {'title': 'Log In'},
+        'signin': {'title': 'Sign In'}
+    }
+    registerform = RegisterUserForm(request.POST or None)
+    masterform = MasterPassForm(request.POST or None)
+    if request.method == 'POST' and registerform.is_valid():
+        try:
+            registerform.save()
+        except IntegrityError:
+            registerform.add_error('username', 'Такой логин уже существует')
+        masterform.is_valid()
+        masterpass = masterform.cleaned_data['masterpass']
+        print(masterpass)
+        # user = UserKeys.objects.get(user_id=request.user.id)
+        # user['publickey'] = b'publickey'
+        # user['secretkey_enc'] = b'secretkey'
+        # user.save()
+        return redirect('.')
+    return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
 
-    def get_context_data(self, **kwargs):
+
+class LoginUser(BaseMixin, LoginView):
+    form_class = LoginUserForm
+    template_name = 'main/login.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        con_def = self.get_user_context(title='Sign In')
+        con_def = self.get_user_context(title='Войти')
         return context | con_def
 
+    def get_success_url(self):
+        return reverse_lazy('home')
 
-def login(request):
-    pass
 
-
-def profile(request):
-    pass
+def logout_user(request):
+    logout(request)
+    return redirect('home')

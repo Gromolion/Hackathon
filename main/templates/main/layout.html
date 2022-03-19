@@ -24,10 +24,11 @@
 {#        </div>#}
         <div class="profile">
         {% if is_auth %}
-            <a href="{% url 'profile' %}" class="login">{{ profile.title }}</a>
+            <p>{{ user.username }}</p>
+            <a href="{% url 'logout' %}">Выйти</a>
         {% else %}
-            <a href="{% url 'login' %}">{{ login.title }}</a>
-            <a href="{% url 'signin' %}">{{ signin.title }}</a>
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signin' %}">Sign In</a>
         {% endif %}
         </div>
     </header>

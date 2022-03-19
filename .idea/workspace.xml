@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="20bd0a5f-2102-48db-a0e7-48fd9f060437" name="Default Changelist" comment="1">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/main/css/layout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/main/css/signin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/main/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/main/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/main/signin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackathonDdos/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackathonDdos/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HackathonDdos/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackathonDdos/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+    <list default="true" id="20bd0a5f-2102-48db-a0e7-48fd9f060437" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/main/migrations/0006_alter_info_panel_userkeys.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/main/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/main/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Python Script" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -124,7 +123,7 @@
       <workItem from="1647617223844" duration="687000" />
       <workItem from="1647618241140" duration="1401000" />
       <workItem from="1647629518020" duration="900000" />
-      <workItem from="1647630467475" duration="24707000" />
+      <workItem from="1647630467475" duration="38259000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1647611873978</created>
@@ -147,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647612235087</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit">
+      <created>1647684488593</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647684488594</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +173,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HackathonDdos$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1647614552831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
