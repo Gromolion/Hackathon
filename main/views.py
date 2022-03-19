@@ -9,7 +9,7 @@ from .utils import *
 
 
 class Home(BaseMixin, ListView):
-    model = Folder
+    model = File
     template_name = 'main/home.html'
     context_object_name = 'objects'
 

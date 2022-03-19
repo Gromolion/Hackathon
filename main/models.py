@@ -2,33 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Folder(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Папка')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Папка'
-        verbose_name_plural = 'Папки'
-
-
 class File(models.Model):
     name = models.CharField(max_length=255, verbose_name='Файл')
-    folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'Папка'
-        verbose_name_plural = 'Папка'
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файл'
 
 
 class Access(models.Model):
     name = models.CharField(max_length=255, verbose_name='Доступ')
     value = models.CharField(max_length=255, verbose_name='Значение')
     file = models.ForeignKey('File', db_index=True, on_delete=models.CASCADE, verbose_name='Файл')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Доступ'
+        verbose_name_plural = 'Доступы'
 
 
 class UserAccess(models.Model):
@@ -43,5 +38,5 @@ class UserKeys(models.Model):
 
 
 class UserAdmin(models.Model):
-    folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
+    file = models.ForeignKey('File', db_index=True, on_delete=models.CASCADE, verbose_name='Файл')
     user = models.OneToOneField('auth.User', db_index=True, on_delete=models.CASCADE, verbose_name='Пользователь')
