@@ -1,0 +1,11 @@
+.left-col, .right-col {
+    width: 27%;
+    height: 100vh;
+    border: 1px solid rgba(71, 69, 69, 0.31);
+}
+.mid-col {
+    width: 46%;
+}
+.content {
+    display: flex;
+}

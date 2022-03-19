@@ -4,12 +4,30 @@ body {
 }
 
 header {
-    padding: 15px 60px;
+    height: 50px;
+    padding: 15px 80px;
     display: flex;
     justify-content: space-between;
-    background-color: #467bd3;
+    align-items: center;
+    background-color: #3CADEDBF;
     color: #fff;
-    font-size: 1.1em;
+    font-size: 20px;
+}
+
+.logo {
+    display: flex;
+    font-size: 36px;
+    align-items: center;
+}
+.logo p {
+    margin: 0;
+    height: min-content;
+}
+
+header img {
+    width: 65px;
+    height: 55px;
+    margin-right: 15px;
 }
 
 header a {
