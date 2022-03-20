@@ -1,0 +1,14 @@
+.login {
+    width: 40%;
+    margin: 0 auto;
+}
+button {
+    margin: 0 auto;
+}
+.form-block {
+    display: flex;
+    justify-content: space-between;
+}
+input {
+
+}
