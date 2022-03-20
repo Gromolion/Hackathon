@@ -17,18 +17,20 @@
 <body>
     <header>
         <div class="logo">
-            <a>YPS</a>
+            <img src="{% static 'main/images/3272569.png' %}" alt='logo'>
+            <p>Вебпрактик</p>
         </div>
-{#        <div class="links">#}
-{#            #}
-{#        </div>#}
         <div class="profile">
         {% if is_auth %}
-            <p>{{ user.username }}</p>
-            <a href="{% url 'logout' %}">Выйти</a>
+            <div class="authed">
+                <p>{{ user.username }}</p>
+                <a href="{% url 'logout' %}">Выйти</a>
+            </div>
         {% else %}
-            <a href="{% url 'login' %}">Log In</a>
-            <a href="{% url 'signin' %}">Sign In</a>
+            <div class="not_authed">
+                <a href="{% url 'login' %}">Log In</a>
+                <a href="{% url 'signin' %}">Sign In</a>
+            </div>
         {% endif %}
         </div>
     </header>

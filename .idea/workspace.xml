@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20bd0a5f-2102-48db-a0e7-48fd9f060437" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/main/migrations/0006_alter_info_panel_userkeys.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/main/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/main/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HackathonDdos/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackathonDdos/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +36,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="26YqoGs4WLbi2GzAu4XgdATmo5B" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -123,7 +118,7 @@
       <workItem from="1647617223844" duration="687000" />
       <workItem from="1647618241140" duration="1401000" />
       <workItem from="1647629518020" duration="900000" />
-      <workItem from="1647630467475" duration="38259000" />
+      <workItem from="1647630467475" duration="55468000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1647611873978</created>
@@ -153,7 +148,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647684488594</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit">
+      <created>1647698939268</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647698939269</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <created>1647725288632</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647725288632</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

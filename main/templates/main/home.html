@@ -1,7 +1,25 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
 {% endblock %}
-
 {% block content %}
+    <div class="content">
+        <div class="left-col">
+            <h1>Папки</h1>
+            <ul id="folders">
+
+                {% for o in projects %}
+                    <li>{{ o }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mid-col">
+            <h1>Доступы</h1>
+        </div>
+        <div class="right-col">
+            <h1>Пользователи</h1>
+        </div>
+    </div>
 {% endblock %}

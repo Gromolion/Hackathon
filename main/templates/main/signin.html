@@ -17,6 +17,7 @@
                 </div>
 {#                <p class="form-error">{{ f.errors }}</p>#}
             {% endfor %}
+            {% csrf_token %}
             {% for f in masterform %}
                 <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
             {% endfor %}
