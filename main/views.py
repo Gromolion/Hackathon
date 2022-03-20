@@ -64,14 +64,18 @@ def register(request):
 
         masterform.is_valid()
         masterpass = masterform.cleaned_data['masterpass']
-        print(masterpass)        
-        user = UserKeys.objects.get(user_id=request.user.id)
+
+        login = registerform.cleaned_data.get('username')     
 
         public, encrypted_private = f.symmetrical_enc(masterpass)
 
-        user['publickey'] = public
-        user['secretkey_enc'] = encrypted_private
-        user.save()
+        user = {
+            "user_id": User.objects.get(username=login).id,
+            "public_key": public,
+            "private_key": encrypted_private
+        }
+
+        UserKeys.objects.create(**user)
 
         return redirect('login')
     return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
