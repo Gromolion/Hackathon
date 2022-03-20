@@ -71,110 +71,101 @@ def chunked(file: bytes, n: int):
     return temp
 
 
-from Cryptodome.PublicKey import RSA
-from Cryptodome.Cipher import PKCS1_v1_5
-import Cryptodome.Random as Random
-from base64 import b64encode
-from base64 import b64decode
-
-class RSA_Cipher:
-  def generate_key(self, key_length):
-    assert key_length in [1024,2048,4096]
-    rng = Random.new().read
-    self.key = RSA.generate(key_length,rng)
-
-  def encrypt(self, data):
-    plaintext = b64encode(data.encode())
-    rsa_encryption_cipher = PKCS1_v1_5.new(self.key)
-    ciphertext = rsa_encryption_cipher.encrypt(plaintext)
-    return b64encode(ciphertext).decode()
-
-  def decrypt(self,data):
-    ciphertext = b64decode(data.encode())
-    rsa_decryption_cipher = PKCS1_v1_5.new(self.key)
-    plaintext = rsa_decryption_cipher.decrypt(ciphertext,16)
-    return b64decode(plaintext).decode()
-
-
-chiper = RSA_Cipher()
-chiper.generate_key(1024)
+# from Cryptodome.Cipher import PKCS1_v1_5
+# from Cryptodome.PublicKey import RSA
 
 
 
-key = RSA.generate(1024)
-private = key.export_key()
+# def encr(text: bytes, public):
 
-public = key.publickey().export_key()
+#     rsa_key = RSA.importKey(public)
+#     cipher = PKCS1_v1_5.new(rsa_key)
+#     ciphertext = cipher.encrypt(text)
 
-import Cryptodome
+#     return ciphertext
 
+# def decr(text: bytes, private):
+#     rsa_key = RSA.importKey(private)
+#     cipher = PKCS1_v1_5.new(rsa_key)
 
-from Cryptodome.Cipher import PKCS1_v1_5
-from Cryptodome.PublicKey import RSA
-from Cryptodome.Random import get_random_bytes
-aes_key = get_random_bytes(16)
-rsa_key = RSA.importKey(public)
-cipher = PKCS1_v1_5.new(rsa_key)
-ciphertext = cipher.encrypt(aes_key)
+#     aes_key = cipher.decrypt(text, b'0')
 
-
-from Cryptodome.Random import get_random_bytes
-rsa_key = RSA.importKey(private)
-sentinel = get_random_bytes(16)
-cipher = PKCS1_v1_5.new(rsa_key)
-aes_key = cipher.decrypt(ciphertext, sentinel, expected_pt_len=16)
+#     return aes_key
 
 
-# n = 512
-# public, primary = rsa.newkeys(n)
-# print(public, primary, sep='\n')
+# key = RSA.generate(1024)
 
-# with open('test.jpg', 'br') as file:
-    
+# private = key.export_key()
+# public = key.publickey().export_key()
 
+# super_word = b"awdfeergsrg[oisrjgsoiijgpsoifjpsoijpsoijbp"
+# print(super_word)
+
+# encr_text = encr(super_word, public)
+# print(encr_text)
+
+# text = decr(encr_text, private)
+
+# print(text)
+
+
+
+# with open("test.jpg", "rb") as file:
 #     data = file.read()
 
-#     temp = chunked(data, n)
+# data = encr(data, public)
+
+# with open("encrypted.bin", "wb") as _out:
+#     _out.write(data)
+
+# data = decr(data, private)
+
+# with open("decrypted.jpg", "wb") as _decrypt:
+#     _decrypt.write(data)
+
+# print("Done!")
 
 
-#     for chunk in temp:
-#         index = temp.index(chunk)
+n = 512
+public, primary = rsa.newkeys(n)
+print(public, primary, sep='\n')
 
-#         chunk = rsa.encrypt(chunk, public)
+def encr(file_name):
+    with open(file_name, 'rb') as file:
+        data = file.read()
 
-#         temp[index] = chunk
+        data = chunked(data, n)
 
-
-#     with open("encrypted.bin", "wb") as _out:
-#         for chunk in temp:
-#             _out.write(chunk)
-#         pass
-    
-#     print("Done!")
-    
-    
-# with open("encrypted.bin", "rb") as file:
-#     data = file.read()
-
-    
-
-
-#     for chunk in temp:
-#         index = temp.index(chunk)
-
-#         print(len(chunk))
-
-#         chunk = rsa.decrypt(
-#             bytes(chunk),
-#             priv_key=primary
-#         )
-
-#         temp[index] = chunk
-
-
-#     with open("decrypted.jpg", "wb") as _out:
-#         for chunk in temp:
-#             _out.write(chunk)
+        for chunk in data:
+            index = data.index(chunk)
+            chunk = rsa.encrypt(chunk, public)
+            data[index] = chunk
+        
+    with open(file_name + ".bin", "wb") as _out:
+        for chunk in data:
+            _out.write(chunk)
+        
+    return data
     
 
+def decr(file_name, encrypted_data):
+    for chunk in encrypted_data:
+        index = encrypted_data.index(chunk)
+        chunk = rsa.decrypt(
+            bytes(chunk),
+            priv_key=primary
+        )
+        encrypted_data[index] = chunk
+
+
+    with open(file_name, "wb") as _out:
+        for chunk in encrypted_data:
+            _out.write(chunk)
+
+
+if __name__ == "__main__":
+    file_name = "test.jpg"
+    
+    data = encr(file_name)
+    decr("new.jpg", data)
 
