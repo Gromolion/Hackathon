@@ -24,6 +24,10 @@ class RegisterUserForm(UserCreationForm):
 class MasterPassForm(forms.Form):
     masterpass = forms.CharField(label='Master-пароль', widget=forms.TextInput(attrs={'class': 'form-input'}))
 
+    def valied():
+        
+        pass
+
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
