@@ -3,16 +3,16 @@ from django.contrib import admin
 from .models import *
 
 
-class FileAdmin(admin.ModelAdmin):
+class FolderAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
 
 
 class AccessAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'value', 'file')
-    list_display_links = ('id', 'name', 'value', 'file')
-    search_fields = ('name', 'value', 'file')
+    list_display = ('id', 'name', 'value', 'folder')
+    list_display_links = ('id', 'name', 'value', 'folder')
+    search_fields = ('name', 'value', 'folder')
 
 
 class UserAccessAdmin(admin.ModelAdmin):
@@ -24,12 +24,12 @@ class UserKeysAdmin(admin.ModelAdmin):
 
 
 class UserAdminAdmin(admin.ModelAdmin):
-    list_display = ('id', 'file', 'user')
-    list_display_links = ('id', 'file', 'user')
-    search_fields = ('id', 'file', 'user')
+    list_display = ('id', 'folder', 'user')
+    list_display_links = ('id', 'folder', 'user')
+    search_fields = ('id', 'folder', 'user')
 
 
-admin.site.register(File, FileAdmin)
+admin.site.register(Folder, FolderAdmin)
 admin.site.register(Access, AccessAdmin)
 admin.site.register(UserAccess, UserAccessAdmin)
 admin.site.register(UserKeys, UserKeysAdmin)

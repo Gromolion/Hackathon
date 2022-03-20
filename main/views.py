@@ -1,38 +1,39 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.db.utils import IntegrityError
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
 from .utils import *
 
 
-class Home(BaseMixin, ListView):
-    model = File
+class Home(LoginRequiredMixin, BaseMixin, ListView):
+    model = Folder
     template_name = 'main/home.html'
     context_object_name = 'objects'
+    login_url = 'login'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['projects'] = Project.objects.filter(panel__userpanel__user=self.request.user.id)
+        context['folders'] = Folder.objects.filter(access__useraccess__user_id=self.request.user.id).distinct()
+        context['user_id'] = self.request.user.id
+        context['get_users'] = self.get_users
         con_def = self.get_user_context(title='Главная страница')
         return context | con_def
 
-    # def get_queryset(self):
-    #     return Project.objects.all()
+    def get_queryset(self):
+        return Folder.objects.all()
 
-    # def get_panels(self, project_id):
-    #     return Panel.objects.filter(project_id=project_id, panel__userpanel__user_id=self.request.user.id)
-    #
-    # def get_infos(self, panel_id):
-    #     return Info.objects.filter(panel_id=panel_id)
-    #
-    # def get_superusers(self, panel_id):
-    #     return User.objects.filter(userpanel__panel_id=panel_id, userpanel__is_admin=True)
-    #
-    # def get_users(self, panel_id):
-    #     return User.objects.filter(userpanel__panel_id=panel_id, userpanel__is_admin=False)
+    # def get_accesses(self, folder_id):
+    #     return Access.objects.filter(folder_id=1, useraccess__user_id=self.request.user.id)
+
+    def get_admins(self, folder_id):
+        return User.objects.filter(useradmin__folder_id=folder_id)
+
+    def get_users(self, access_id):
+        return User.objects.filter(useraccess__access_id=access_id)
 
 
 def register(request):
@@ -56,7 +57,7 @@ def register(request):
         # user['publickey'] = b'publickey'
         # user['secretkey_enc'] = b'secretkey'
         # user.save()
-        return redirect('.')
+        return redirect('login')
     return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
 
 
@@ -76,3 +77,23 @@ class LoginUser(BaseMixin, LoginView):
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+
+class FolderView(LoginRequiredMixin, BaseMixin, ListView):
+    model = Access
+    template_name = 'main/folder.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'accesses'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['folders'] = Folder.objects.filter(access__useraccess__user_id=self.request.user.id).distinct()
+        context['users'] = User.objects.filter(useraccess__access__folder_id=self.kwargs['pk']).distinct()
+        context['admins'] = User.objects.filter(useradmin__folder_id=self.kwargs['pk'])
+        context['user_id'] = self.request.user.id
+        con_def = self.get_user_context(title=Folder.objects.get(id=self.kwargs['pk']))
+        return context | con_def
+
+    def get_queryset(self):
+        return Access.objects.filter(folder_id=self.kwargs['pk'], useraccess__user_id=self.request.user.id)
+

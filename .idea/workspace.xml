@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20bd0a5f-2102-48db-a0e7-48fd9f060437" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/main/migrations/0004_folder_remove_access_file_remove_useradmin_file_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/main/css/folder.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/main/folder.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templatetags/tags.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HackathonDdos/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HackathonDdos/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +63,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nais5\Desktop\HackathonDdos\main\static\main\js" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.test2">
     <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -118,7 +135,8 @@
       <workItem from="1647617223844" duration="687000" />
       <workItem from="1647618241140" duration="1401000" />
       <workItem from="1647629518020" duration="900000" />
-      <workItem from="1647630467475" duration="55468000" />
+      <workItem from="1647630467475" duration="59766000" />
+      <workItem from="1647752465379" duration="12689000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1647611873978</created>
@@ -162,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647725288632</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit">
+      <created>1647726681369</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647726681369</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

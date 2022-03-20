@@ -2,21 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class File(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Файл')
+class Folder(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Папка')
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'Файл'
-        verbose_name_plural = 'Файл'
+        verbose_name = 'Папка'
+        verbose_name_plural = 'Папка'
 
 
 class Access(models.Model):
     name = models.CharField(max_length=255, verbose_name='Доступ')
     value = models.CharField(max_length=255, verbose_name='Значение')
-    file = models.ForeignKey('File', db_index=True, on_delete=models.CASCADE, verbose_name='Файл')
+    folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
 
     def __str__(self):
         return self.name
@@ -38,5 +38,5 @@ class UserKeys(models.Model):
 
 
 class UserAdmin(models.Model):
-    file = models.ForeignKey('File', db_index=True, on_delete=models.CASCADE, verbose_name='Файл')
+    folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
     user = models.OneToOneField('auth.User', db_index=True, on_delete=models.CASCADE, verbose_name='Пользователь')

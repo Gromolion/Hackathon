@@ -1,0 +1,22 @@
+.span {
+    display: flex;
+    margin-bottom: 5px;
+}
+.span * {
+    margin: 0;
+}
+.span .name {
+    margin-right: 10px;
+}
+.users h3{
+    margin: 0 0 10px 0;
+}
+.span button {
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+.span button svg {
+    margin: 0 auto;
+}

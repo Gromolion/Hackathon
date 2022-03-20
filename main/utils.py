@@ -1,5 +1,6 @@
 from .models import *
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 
 class BaseMixin:
@@ -14,4 +15,4 @@ class BaseMixin:
 
     def is_auth(self):
         if not self.request.user.is_authenticated:
-            return reverse_lazy('login')
+            return redirect('login')
