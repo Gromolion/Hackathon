@@ -1,5 +1,4 @@
 
-import Cryptodome
 import rsa
 import cryptocode
 
@@ -9,13 +8,13 @@ def symmetrical_enc(secret):
     # Содаёт и возвращает ключи rsa
     # primaty key сразу симметрично шифруется по секретному ключу
 
-    pbk, prk = rsa.newkeys(512)
+    pbk, prk = rsa.newkeys(1024)
     encoded = cryptocode.encrypt(
         message=repr(prk),
         password=secret
     )
 
-    return repr(pbk), encoded, repr(prk)
+    return repr(pbk), encoded
 
 
 def symmetrical_dec(encoded, secret) -> str:
@@ -58,7 +57,7 @@ def to_key(key):
 # print(prk == answer)
 
 
-def chunked(file: bytes, n: int):
+def _chunked(file: bytes, n: int):
     temp = []
 
     start = 0
@@ -128,13 +127,12 @@ def chunked(file: bytes, n: int):
 
 n = 512
 public, primary = rsa.newkeys(n)
-print(public, primary, sep='\n')
 
 def encr(file_name):
     with open(file_name, 'rb') as file:
         data = file.read()
 
-        data = chunked(data, n)
+        data = _chunked(data, n)
 
         for chunk in data:
             index = data.index(chunk)
