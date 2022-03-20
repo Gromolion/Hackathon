@@ -122,4 +122,4 @@ class FolderView(LoginRequiredMixin, BaseMixin, ListView):
 def foldercreate(request):
     form = FolderCreateForm
 
-    return render(request, 'main/foldercreate.html', data)
+    return render(request, 'main/foldercreate.html')
