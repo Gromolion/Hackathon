@@ -19,7 +19,7 @@
             {% endfor %}
             {% for f in form2 %}
                 <div class="form-block">
-                    <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
+                    <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}
                 </div>
                 <p class="form-error">{{ f.errors }}</p>
             {% endfor %}
