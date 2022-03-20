@@ -1,0 +1,27 @@
+.signin {
+    width: 30%;
+    margin: 0 auto;
+}
+.signin button {
+    margin: 0 auto;
+    display: block;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.signin button:hover {
+    background-color: #dedddd;
+}
+.form-block {
+    display: flex;
+    justify-content: space-between;
+}
+.signin input {
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.signin h1 {
+    text-align: center;
+}

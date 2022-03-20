@@ -47,3 +47,6 @@ header a:hover {
 .authed {
     display: flex;
 }
+.profile > div a {
+    margin-left: 10px;
+}
