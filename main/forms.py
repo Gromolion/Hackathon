@@ -28,3 +28,11 @@ class MasterPassForm(forms.Form):
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+
+
+class FolderCreateForm(forms.Form):
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-input'}))
+
+    class Meta:
+        model = Folder
+        fields = ['name',]

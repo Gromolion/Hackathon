@@ -18,7 +18,22 @@
                   <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
                 </svg>{{ f }}</a>
             {% endfor %}
+            <div class="buttons">
+                <button id="add">Добавить</button>
+                <button>Поделиться</button>
+                </div>
             </div>
+        <form id="create-folder">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                <div class="form-block">
+                    <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
+                </div>
+                <p class="form-error">{{ f.errors }}</p>
+                {% endfor %}
+            <button type="submit">Sign In</button>
+        </form>
         </div>
         <div class="mid-col col">
             <h1>Доступы</h1>

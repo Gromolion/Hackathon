@@ -18,11 +18,13 @@ class Home(LoginRequiredMixin, BaseMixin, ListView):
     context_object_name = 'objects'
     login_url = 'login'
 
+    def get_success_url(self):
+        return reverse_lazy('home')
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['folders'] = Folder.objects.filter(access__useraccess__user_id=self.request.user.id).distinct()
         context['user_id'] = self.request.user.id
-        context['get_users'] = self.get_users
         con_def = self.get_user_context(title='Главная страница')
         return context | con_def
 
@@ -39,12 +41,18 @@ class Home(LoginRequiredMixin, BaseMixin, ListView):
         return User.objects.filter(useraccess__access_id=access_id)
 
 
+def home(request):
+    data = {
+        'title': 'Менеджер паролей',
+    }
+    form = FolderCreateForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        UserAdmin.objects.create()
+
 def register(request):
     data = {
         'title': 'Регистрация',
-        'profile': {'title': 'Профиль'},
-        'login': {'title': 'Log In'},
-        'signin': {'title': 'Sign In'}
     }
     registerform = RegisterUserForm(request.POST or None)
     masterform = MasterPassForm(request.POST or None)
@@ -110,3 +118,8 @@ class FolderView(LoginRequiredMixin, BaseMixin, ListView):
     def get_queryset(self):
         return Access.objects.filter(folder_id=self.kwargs['pk'], useraccess__user_id=self.request.user.id)
 
+
+def foldercreate(request):
+    form = FolderCreateForm
+
+    return render(request, 'main/foldercreate.html', data)

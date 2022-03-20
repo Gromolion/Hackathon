@@ -37,3 +37,19 @@ h1 {
 a svg {
     margin: 0 5px 0 0;
 }
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.buttons button {
+    width: 40%;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.buttons button:hover {
+    background-color: #dedddd;
+}
