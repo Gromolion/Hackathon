@@ -7,6 +7,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import functions as f
 
 from .models import *
 
@@ -24,9 +25,25 @@ class RegisterUserForm(UserCreationForm):
 class MasterPassForm(forms.Form):
     masterpass = forms.CharField(label='Master-пароль', widget=forms.TextInput(attrs={'class': 'form-input'}))
 
-    def valied():
+    def clean_masterpass(self):
+
+        login = self.data['username']
+
+        secret = self.cleaned_data["masterpass"]
+
+        id = User.objects.get(username=login).id
+        print(id)
+
+        privatekey = UserKeys.objects.get(user_id=id).private_key
+        # print(privatekey)
+
+        res = f.symmetrical_dec(privatekey, secret)
+
+        if not res:
+            raise ValidationError("Master-пароль не подходит")
         
-        pass
+        return secret
+    
 
 
 class LoginUserForm(AuthenticationForm):
