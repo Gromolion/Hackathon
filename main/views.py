@@ -1,9 +1,12 @@
+from doctest import master
 from django.contrib.auth import logout
-from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, DetailView
-from django.db.utils import IntegrityError
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.db.utils import IntegrityError
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, DetailView, ListView
+
+import functions as f
 
 from .forms import *
 from .utils import *
@@ -50,23 +53,30 @@ def register(request):
             registerform.save()
         except IntegrityError:
             registerform.add_error('username', 'Такой логин уже существует')
+
         masterform.is_valid()
         masterpass = masterform.cleaned_data['masterpass']
-        print(masterpass)
-        # user = UserKeys.objects.get(user_id=request.user.id)
-        # user['publickey'] = b'publickey'
-        # user['secretkey_enc'] = b'secretkey'
-        # user.save()
+        print(masterpass)        
+        user = UserKeys.objects.get(user_id=request.user.id)
+
+        public, encrypted_private = f.symmetrical_enc(masterpass)
+
+        user['publickey'] = public
+        user['secretkey_enc'] = encrypted_private
+        user.save()
+
         return redirect('login')
     return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
 
 
 class LoginUser(BaseMixin, LoginView):
     form_class = LoginUserForm
+
     template_name = 'main/login.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["form2"] = MasterPassForm()
         con_def = self.get_user_context(title='Войти')
         return context | con_def
 
@@ -77,6 +87,9 @@ class LoginUser(BaseMixin, LoginView):
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+
+
 
 
 class FolderView(LoginRequiredMixin, BaseMixin, ListView):
