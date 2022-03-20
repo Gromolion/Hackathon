@@ -13,16 +13,16 @@
             <div class="form-error">{{ form.non_field_errors }}</div>
             {% for f in registerform %}
                 <div class="form-block">
-                    <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
+                    <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}
                 </div>
                 <p class="form-error">{{ f.errors }}</p>
             {% endfor %}
             {% csrf_token %}
             {% for f in masterform %}
-                <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
+                <div class="form-block"><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
                 <p class="form-error">{{ f.errors }}</p>
             {% endfor %}
-            <button type="submit">Sign In</button>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 {% endblock %}

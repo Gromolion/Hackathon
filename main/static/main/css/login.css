@@ -1,14 +1,27 @@
 .login {
-    width: 40%;
+    width: 20%;
     margin: 0 auto;
 }
-button {
+.login button {
     margin: 0 auto;
+    display: block;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.login button:hover {
+    background-color: #dedddd;
 }
 .form-block {
     display: flex;
     justify-content: space-between;
 }
-input {
+.login input {
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 5px;
+}
 
+.login h1 {
+    text-align: center;
 }
