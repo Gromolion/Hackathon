@@ -64,14 +64,22 @@ def register(request):
 
         masterform.is_valid()
         masterpass = masterform.cleaned_data['masterpass']
-        print(masterpass)        
-        user = UserKeys.objects.get(user_id=request.user.id)
+
+        login = registerform.cleaned_data.get('username')     
 
         public, encrypted_private = f.symmetrical_enc(masterpass)
 
-        user['publickey'] = public
-        user['secretkey_enc'] = encrypted_private
-        user.save()
+        id = User.objects.get(username=login).id
+
+        masterform.get_login(id)
+
+        user = {
+            "user_id": id,
+            "public_key": public,
+            "private_key": repr(encrypted_private)
+        }
+
+        UserKeys.objects.create(**user)
 
         return redirect('login')
     return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
@@ -83,13 +91,40 @@ class LoginUser(BaseMixin, LoginView):
     template_name = 'main/login.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        masterform = MasterPassForm()
         context = super().get_context_data(**kwargs)
-        context["form2"] = MasterPassForm()
+        
+        context["form2"] = masterform
         con_def = self.get_user_context(title='Войти')
         return context | con_def
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+
+def login(request):
+    data = {
+        'title': 'Войти',
+    }
+
+    loginform = LoginUserForm(request.POST)
+    masterform = MasterPassForm(request.POST)
+    if request.method == 'POST' and loginform.is_valid() and masterform.is_valid():
+        
+
+        return redirect('home')
+
+    data["form"] = loginform
+    data["form2"] = masterform
+
+    return render(
+        request, 
+        template_name='main/login.html',
+        context=data
+    )
+
+    # return render(request, 'main/signin.html', data | {'registerform': registerform, 'masterform': masterform})
+
 
 
 def logout_user(request):

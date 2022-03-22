@@ -17,7 +17,7 @@ def symmetrical_enc(secret):
     return repr(pbk), encoded
 
 
-def symmetrical_dec(encoded, secret) -> str:
+def symmetrical_dec(encoded, secret):
     # Функция дешифрования
 
     decoded = cryptocode.decrypt(

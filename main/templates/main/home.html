@@ -19,7 +19,7 @@
                 </svg>{{ f }}</a>
             {% endfor %}
             <div class="buttons">
-                <button id="add">Добавить</button>
+                <button href="" id="add">Добавить</button>
                 <button>Поделиться</button>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 </div>
                 <p class="form-error">{{ f.errors }}</p>
                 {% endfor %}
-            <button type="submit">Sign In</button>
+            {% comment %} <button type="submit">Sign In</button> {% endcomment %}
         </form>
         </div>
         <div class="mid-col col">
