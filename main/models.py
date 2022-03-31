@@ -13,6 +13,11 @@ class Folder(models.Model):
         verbose_name_plural = 'Папка'
 
 
+class UserFolder(models.Model):
+    user = models.ForeignKey('auth.User', db_index=True, on_delete=models.CASCADE, verbose_name='Пользователь')
+    folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
+
+
 class Access(models.Model):
     name = models.CharField(max_length=255, verbose_name='Доступ')
     value = models.CharField(max_length=255, verbose_name='Значение')
@@ -39,4 +44,4 @@ class UserKeys(models.Model):
 
 class UserAdmin(models.Model):
     folder = models.ForeignKey('Folder', db_index=True, on_delete=models.CASCADE, verbose_name='Папка')
-    user = models.OneToOneField('auth.User', db_index=True, on_delete=models.CASCADE, verbose_name='Пользователь')
+    user = models.ForeignKey('auth.User', db_index=True, on_delete=models.CASCADE, verbose_name='Пользователь')

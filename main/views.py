@@ -14,41 +14,43 @@ from .utils import *
 
 class Home(LoginRequiredMixin, BaseMixin, ListView):
     model = Folder
+    form_class1 = FolderCreateForm
+    form_class2 = AccessCreateForm
+    success_url = 'home'
     template_name = 'main/home.html'
-    context_object_name = 'objects'
     login_url = 'login'
-
-    def get_success_url(self):
-        return reverse_lazy('home')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['folders'] = Folder.objects.filter(access__useraccess__user_id=self.request.user.id).distinct()
-        context['user_id'] = self.request.user.id
-        con_def = self.get_user_context(title='Главная страница')
+        user_id = self.request.user.id
+        context['folders'] = Folder.objects.filter(userfolder__user_id=user_id)
+        context['user_id'] = user_id
+        context['form1'] = self.form_class1()
+        context['form2'] = self.form_class2()
+        try:
+            pk = self.kwargs['pk']
+        except KeyError:
+            pk = None
+        context['selected'] = pk
+        if pk:
+            context['accesses'] = Access.objects.filter(folder_id=pk, useraccess__user_id=user_id)
+            context['users'] = User.objects.filter(useraccess__access__folder_id=pk).distinct()
+            context['admins'] = User.objects.filter(useradmin__folder_id=pk)
+            context['is_admin'] = User.objects.filter(useradmin__folder_id=pk, useradmin__user_id=user_id)
+        con_def = self.get_user_context(title=Folder.objects.get(id=pk) if pk else 'Главная страница')
         return context | con_def
 
-    def get_queryset(self):
-        return Folder.objects.all()
+    def post(self, request, pk):
+        form1 = self.form_class1(request.POST)
+        form2 = self.form_class2(request.POST)
+        if request.method == 'POST':
+            if 'folder-but' in request.POST and form1.is_valid():
+                form1.save(request)
+                return redirect('home')
+            elif 'access-but' in request.POST and form2.is_valid():
+                form2.save(request, self.kwargs['pk'])
+                return redirect(request.META.get('HTTP_REFERER'))
 
-    # def get_accesses(self, folder_id):
-    #     return Access.objects.filter(folder_id=1, useraccess__user_id=self.request.user.id)
-
-    def get_admins(self, folder_id):
-        return User.objects.filter(useradmin__folder_id=folder_id)
-
-    def get_users(self, access_id):
-        return User.objects.filter(useraccess__access_id=access_id)
-
-
-def home(request):
-    data = {
-        'title': 'Менеджер паролей',
-    }
-    form = FolderCreateForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        UserAdmin.objects.create()
 
 def register(request):
     data = {
@@ -93,7 +95,6 @@ class LoginUser(BaseMixin, LoginView):
     def get_context_data(self, *, object_list=None, **kwargs):
         masterform = MasterPassForm()
         context = super().get_context_data(**kwargs)
-        
         context["form2"] = masterform
         con_def = self.get_user_context(title='Войти')
         return context | con_def
@@ -132,9 +133,6 @@ def logout_user(request):
     return redirect('home')
 
 
-
-
-
 class FolderView(LoginRequiredMixin, BaseMixin, ListView):
     model = Access
     template_name = 'main/folder.html'
@@ -143,18 +141,13 @@ class FolderView(LoginRequiredMixin, BaseMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['folders'] = Folder.objects.filter(access__useraccess__user_id=self.request.user.id).distinct()
+        context['folders'] = Folder.objects.filter(useradmin__user_id=self.request.user.id)
         context['users'] = User.objects.filter(useraccess__access__folder_id=self.kwargs['pk']).distinct()
         context['admins'] = User.objects.filter(useradmin__folder_id=self.kwargs['pk'])
         context['user_id'] = self.request.user.id
+        context['selected'] = Folder.objects.get(id=self.kwargs['pk']).id
         con_def = self.get_user_context(title=Folder.objects.get(id=self.kwargs['pk']))
         return context | con_def
 
     def get_queryset(self):
         return Access.objects.filter(folder_id=self.kwargs['pk'], useraccess__user_id=self.request.user.id)
-
-
-def foldercreate(request):
-    form = FolderCreateForm
-
-    return render(request, 'main/foldercreate.html')

@@ -4,46 +4,107 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
-    {% block fhead %}
-    {% endblock %}
 {% endblock %}
 {% block content %}
     <div class="content">
         <div class="left-col col">
             <h1>Папки</h1>
             <div class="frame">
-            {% for f in folders %}
-                <a href="{% url 'folder' f.id %}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
-                  <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
-                </svg>{{ f }}</a>
-            {% endfor %}
-            <div class="buttons">
-                <button href="" id="add">Добавить</button>
-                <button>Поделиться</button>
+                <div class="folders">
+                    {% for f in folders %}
+                        {% if f.id == selected %}
+                            <div class="folder-selected">
+                                <span class="folder-title"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                                  <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+                                </svg>{{ f }}</span>
+                                <span class="folder-buttons">
+                                    <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                                    </button>
+                                    <button name="delete-folder"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                                    </button>
+                                </span>
+                            </div>
+                        {% else %}
+                            <div class="folder">
+                                <a href="{% url 'folder' f.id %}" class="folder-title">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                                    <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+                                    </svg>{{ f }}</a>
+                                <span class="folder-buttons">
+                                    <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                                        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+                                    </button>
+                                    <button name="delete-folder"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                                    </button>
+                                </span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <form method="post" class="folder-form">
+                        {% csrf_token %}
+                            <div class="form-error">{{ form.non_field_errors }}</div>
+                        {% for f in form1 %}
+                            <div class="form-block">
+                                <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}
+                            </div>
+                            <p class="form-error">{{ f.errors }}</p>
+                        {% endfor %}
+                        <div class="buttons">
+                            <button type="submit" name="folder-but">Добавить</button>
+                            {% if selected %}
+                                <button type="button">Поделиться</button>
+                            {% endif %}
+                        </div>
+                    </form>
                 </div>
             </div>
-        <form id="create-folder">
-            {% csrf_token %}
-            <div class="form-error">{{ form.non_field_errors }}</div>
-                {% for f in form %}
-                <div class="form-block">
-                    <div><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</div>
-                </div>
-                <p class="form-error">{{ f.errors }}</p>
-                {% endfor %}
-            {% comment %} <button type="submit">Sign In</button> {% endcomment %}
-        </form>
         </div>
         <div class="mid-col col">
-            <h1>Доступы</h1>
-            {% block accesses %}
-            {% endblock %}
+            {% if selected %}
+                <h1>Доступы</h1>
+                <div class="frame">
+                    {% for a in accesses %}
+                        <div class="span">
+                            <p class="name">{{ a.name }}:</p>
+                            <p class="value">{{ a.value }}</p>
+                        </div>
+                    {% endfor %}
+                    <form method="post" class="access-form">
+                        {% csrf_token %}
+                            <div class="form-error">{{ form.non_field_errors }}</div>
+                        {% for f in form2 %}
+                            <div class="form-block">
+                                <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}
+                            </div>
+                            <p class="form-error">{{ f.errors }}</p>
+                        {% endfor %}
+                        <div class="buttons">
+                            <button type="submit" name="access-but">Добавить</button>
+                                <button type="button">Поделиться</button>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
         </div>
         <div class="right-col col">
-            <h1>Пользователи</h1>
-            {% block users %}
-            {% endblock %}
+            {% if selected %}
+                <h1>Пользователи</h1>
+                <div class="frame users">
+                    <h3>Админы</h3>
+                    {% for a in admins %}
+                        <p>{{ a.username }}</p>
+                    {% endfor %}
+                    <h3>Пользователи</h3>
+                    {% for u in users %}
+                        <p>{{ u.username }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

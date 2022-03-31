@@ -3,8 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="20bd0a5f-2102-48db-a0e7-48fd9f060437" name="Default Changelist" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/main/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/css/folder.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/main/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/main/js/jquery-3.2.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/folder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.jpg.bin" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +137,10 @@
       <workItem from="1647618241140" duration="1401000" />
       <workItem from="1647629518020" duration="900000" />
       <workItem from="1647630467475" duration="59766000" />
-      <workItem from="1647752465379" duration="20987000" />
+      <workItem from="1647752465379" duration="26830000" />
+      <workItem from="1647894858217" duration="1240000" />
+      <workItem from="1647982200989" duration="6480000" />
+      <workItem from="1648108824039" duration="7396000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1647611873978</created>
@@ -198,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647774086594</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="commit">
+      <created>1647774365090</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1647774365090</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

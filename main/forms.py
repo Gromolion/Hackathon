@@ -1,11 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-
-
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import functions as f
 
@@ -32,10 +26,8 @@ class MasterPassForm(forms.Form):
         secret = self.cleaned_data["masterpass"]
 
         id = User.objects.get(username=login).id
-        print(id)
 
         privatekey = UserKeys.objects.get(user_id=id).private_key
-        # print(privatekey)
 
         res = f.symmetrical_dec(privatekey, secret)
 
@@ -44,7 +36,6 @@ class MasterPassForm(forms.Form):
         
         return secret
     
-
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
@@ -57,3 +48,23 @@ class FolderCreateForm(forms.Form):
     class Meta:
         model = Folder
         fields = ['name',]
+
+    def save(self, request):
+        fol = Folder.objects.create(name=self.data['name'])
+        fol.save()
+        UserFolder.objects.create(user_id=request.user.id, folder_id=fol.id)
+        UserAdmin.objects.create(folder_id=fol.id, user_id=request.user.id)
+
+
+class AccessCreateForm(forms.Form):
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-input'}))
+    value = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-input'}))
+
+    class Meta:
+        model = Access
+        fields = ['name', 'value']
+
+    def save(self, request, pk):
+        ac = Access.objects.create(name=self.data['name'], value=self.data['value'], folder_id=pk)
+        ac.save()
+        UserAccess.objects.create(user_id=request.user.id, access_id=ac.id)

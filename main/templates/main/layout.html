@@ -16,10 +16,10 @@
 </head>
 <body>
     <header>
-        <div class="logo">
+        <a href="{% url 'home' %}" class="logo">
             <img src="{% static 'main/images/3272569.png' %}" alt='logo'>
             <p>Вебпрактик</p>
-        </div>
+        </a>
         <div class="profile">
         {% if is_auth %}
             <div class="authed">
